@@ -7,4 +7,7 @@ public class TowerBtn : MonoBehaviour
     [SerializeField] private GameObject towerPrefab;
 
     public GameObject TowerPrefab { get => towerPrefab; }
+
+    [SerializeField] private Sprite sprite;
+    public Sprite Sprite { get => sprite; }
 }
