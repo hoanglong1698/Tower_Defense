@@ -45,13 +45,25 @@ public class TileScript : MonoBehaviour
 
         LevelManager.Instance.Tiles.Add(gridPos, this);
 
+        IsEmpty = true;
+
     }
     
     private void OnMouseOver()
     {
         if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (IsEmpty)
+            {
+                ColorTile(emptyColor);
+            }
+
+            if (!IsEmpty)
+            {
+                ColorTile(fullColor);
+            }
+
+            else if (Input.GetMouseButtonDown(0))
             {
                 PlaceTower();
             }
@@ -73,6 +85,10 @@ public class TileScript : MonoBehaviour
         tower.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
 
         tower.transform.SetParent(transform);
+
+        IsEmpty = false;
+
+        ColorTile(Color.white);
 
         GameManager.Instance.BuyTower();
     }
