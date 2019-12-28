@@ -18,6 +18,8 @@ public class LevelManager : Singleton<LevelManager>
 
     [SerializeField] private GameObject redPortalPrefab;
 
+    private Point mapSize;
+
     public float TileSize
     {
         get { return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x; }
@@ -41,6 +43,8 @@ public class LevelManager : Singleton<LevelManager>
 
         //load map from a text document
         string[] mapData = ReadLevelText();
+
+        mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
 
         //calculate the x map size
         int mapX = mapData[0].ToCharArray().Length;
@@ -101,5 +105,10 @@ public class LevelManager : Singleton<LevelManager>
         redSpawn = new Point(11, 6);
 
         Instantiate(redPortalPrefab, Tiles[redSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+    }
+
+    public bool Inbounds(Point position)
+    {
+        return position.X >= 0 && position.Y >= 0 && position.X < mapSize.X && position.Y < mapSize.Y;
     }
 }

@@ -10,7 +10,9 @@ public class TileScript : MonoBehaviour
     private Color32 fullColor = new Color32(255, 118, 118, 255);
     private Color32 emptyColor = new Color32(96, 255, 90, 255);
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer SpriteRenderer { get; set; }
+
+    public bool WalkAble { get; set; }
 
     public bool Debugging { get; set; }
 
@@ -27,7 +29,7 @@ public class TileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class TileScript : MonoBehaviour
 
         LevelManager.Instance.Tiles.Add(gridPos, this);
 
+        WalkAble = true;
         IsEmpty = true;
 
     }
@@ -53,12 +56,12 @@ public class TileScript : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null)
         {
-            if (IsEmpty)
+            if (IsEmpty && !Debugging)
             {
                 ColorTile(emptyColor);
             }
 
-            if (!IsEmpty)
+            if (!IsEmpty && !Debugging)
             {
                 ColorTile(fullColor);
             }
@@ -87,6 +90,7 @@ public class TileScript : MonoBehaviour
         tower.transform.SetParent(transform);
 
         IsEmpty = false;
+        WalkAble = false;
 
         ColorTile(Color.white);
 
@@ -95,6 +99,6 @@ public class TileScript : MonoBehaviour
 
     private void ColorTile(Color newColor)
     {
-        spriteRenderer.color = newColor;
+        SpriteRenderer.color = newColor;
     }
 }
