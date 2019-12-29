@@ -409,7 +409,8 @@ MonoBehaviour:
   blankTile: {fileID: 21300000, guid: e30a228b532f93e41bebb2e0e480e7f6, type: 3}
   arrowPrefab: {fileID: 8726116603599339024, guid: dedeae62a71277c4da87c084f1da4656,
     type: 3}
-  debugTilePrefab: {fileID: 0}
+  debugTilePrefab: {fileID: 7406384378597042232, guid: b7dd637e26ba28c498e3c9a71ec32fe5,
+    type: 3}
 --- !u!4 &279639128
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class AStar
@@ -16,7 +18,7 @@ public static class AStar
 		}
 	}
 
-	public static void GetPath(Point start)
+	public static void GetPath(Point start, Point goal)
 	{
 		if (nodes == null)
 		{
@@ -25,36 +27,112 @@ public static class AStar
 
 		HashSet<Node> openList = new HashSet<Node>();
 
+		HashSet<Node> closeList = new HashSet<Node>();
+
+		Stack<Node> finalPath = new Stack<Node>();
+
 		Node currentNode = nodes[start];
 
 		//Step 1
 		openList.Add(currentNode);
 
-		for (int x = -1; x <= 1; x++)
+		while (openList.Count > 0)
 		{
-			for (int y = -1; y <= 1; y++)
+			for (int x = -1; x <= 1; x++)
 			{
-				Point neighbourPos = new Point(currentNode.GridPosition.X - x, currentNode.GridPosition.Y - y);
-
-				if (LevelManager.Instance.Inbounds(neighbourPos) && LevelManager.Instance.Tiles[neighbourPos].WalkAble && neighbourPos != currentNode.GridPosition)
+				for (int y = -1; y <= 1; y++)
 				{
-					Node neighbour = nodes[neighbourPos];
+					Point neighbourPos = new Point(currentNode.GridPosition.X - x, currentNode.GridPosition.Y - y);
 
-					if (!openList.Contains(neighbour))
+					if (LevelManager.Instance.Inbounds(neighbourPos) && LevelManager.Instance.Tiles[neighbourPos].Walkable && neighbourPos != currentNode.GridPosition)
 					{
-						openList.Add(neighbour);
-					}
+						int gCost = 0;
 
-					neighbour.CalcValues(currentNode);
+						//Score 10 in we are moving to the side or up or down
+						if (Math.Abs(x - y) == 1)
+						{
+							gCost = 10;
+						}
+
+						//scores 14 if we are moving diagonally 
+						else
+						{
+							if (!ConnectedDiagonally(currentNode, nodes[neighbourPos]))
+							{
+								continue;
+							}
+
+							gCost = 14;
+						}
+
+						//Step 3
+						Node neighbour = nodes[neighbourPos];
+
+						if (openList.Contains(neighbour))
+						{
+							if (currentNode.G + gCost < neighbour.G)
+							{
+								//Step 9.4
+								neighbour.CalcValues(currentNode, nodes[goal], gCost);
+							}
+						}
+
+						else if (!closeList.Contains(neighbour))
+						{
+							//Step 9.2
+							openList.Add(neighbour);
+
+							//Step 9.3
+							neighbour.CalcValues(currentNode, nodes[goal], gCost);
+						}
+					}
+				}
+			}
+
+			//Step 5 and 8 
+			openList.Remove(currentNode);
+			closeList.Add(currentNode);
+
+			if (openList.Count > 0)
+			{
+				//sort F lists by value and select first one
+				currentNode = openList.OrderBy(n => n.F).First();
+			}
+
+			if (currentNode == nodes[goal])
+			{
+				while (currentNode.GridPosition != start)
+				{
+					finalPath.Push(currentNode);
+					currentNode = currentNode.Parent;
 				}
 
-
-
-
+				break;
 			}
-		}
+		}		
 
 		//THIS IS ONLY FOR DEBUGGING NEEDS TO BE REMOVED LATER
-		GameObject.Find("AStarDebugger").GetComponent<AStarDebugger>().DebugPath(openList);
+		GameObject.Find("AStarDebugger").GetComponent<AStarDebugger>().DebugPath(openList, closeList, finalPath);
+	}
+
+	private static bool ConnectedDiagonally(Node currentNode, Node neighbor)
+	{
+		Point direction = neighbor.GridPosition - currentNode.GridPosition;
+
+		Point first = new Point(currentNode.GridPosition.X + direction.X, currentNode.GridPosition.Y);
+
+		Point second = new Point(currentNode.GridPosition.X, currentNode.GridPosition.Y + direction.Y);
+
+		if (LevelManager.Instance.Inbounds(first) && !LevelManager.Instance.Tiles[first].Walkable)
+		{
+			return false;
+		}
+
+		if (LevelManager.Instance.Inbounds(second) && !LevelManager.Instance.Tiles[second].Walkable)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

@@ -25,7 +25,7 @@ public class AStarDebugger : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            AStar.GetPath(start.GridPosition);
+            AStar.GetPath(start.GridPosition, goal.GridPosition);
         }
     }
 
@@ -52,12 +52,7 @@ public class AStarDebugger : MonoBehaviour
                         //...make this the start...
                         start = tmp;
 
-                        start.SpriteRenderer.sprite = blankTile;
-
-                        start.SpriteRenderer.color = Color.green;
-
-                        start.Debugging = true;
-                        //CreateDebugTile(start.WorldPosition, new Color32(255, 135, 0, 255));
+                        CreateDebugTile(start.WorldPosition, new Color32(255, 135, 0, 255));
                     }
 
                     //...if there was a start, but no goal...
@@ -66,37 +61,40 @@ public class AStarDebugger : MonoBehaviour
                         //..make this the goal
                         goal = tmp;
 
-                        goal.SpriteRenderer.sprite = blankTile;
-
-                        goal.Debugging = true;
-                        goal.SpriteRenderer.color = new Color32(255, 0, 0, 255);
-                        //CreateDebugTile(goal.WorldPosition, new Color32(255, 0, 0, 255));
-
+                        CreateDebugTile(goal.WorldPosition, new Color32(255, 0, 0, 255));
                     }
                 }
             }
         }
     }
 
-    public void DebugPath(HashSet<Node> openList)
+    public void DebugPath(HashSet<Node> openList, HashSet<Node> closeList, Stack<Node> path)
     {
         foreach (Node node in openList)
         {
-            if (node.TileRef != start)
+            if (node.TileRef != start && node.TileRef != goal)
             {
-                node.TileRef.SpriteRenderer.color = Color.cyan;
-                node.TileRef.SpriteRenderer.sprite = blankTile;
+                CreateDebugTile(node.TileRef.WorldPosition, Color.cyan, node);
             }
 
             PointToParent(node, node.TileRef.WorldPosition);
+        }
 
+        foreach (Node node in closeList)
+        {
+            if (node.TileRef != start && node.TileRef != goal && !path.Contains(node))
+            {
+                CreateDebugTile(node.TileRef.WorldPosition, Color.blue, node);
+            }
+            PointToParent(node, node.TileRef.WorldPosition);
+        }
 
-            //if (node.TileRef != start && node.TileRef != goal)
-            //{
-            //    CreateDebugTile(node.TileRef.WorldPosition, Color.cyan, node);
-            //}
-
-            //PointToParent(node, node.TileRef.WorldPosition);
+        foreach (Node node in path)
+        {
+            if (node.TileRef != start && node.TileRef != goal)
+            {
+                CreateDebugTile(node.TileRef.WorldPosition, Color.green, node);
+            }
         }
     }
 
@@ -105,6 +103,8 @@ public class AStarDebugger : MonoBehaviour
         if(node.Parent != null)
         {
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, position, Quaternion.identity);
+
+            arrow.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
             //Right
             if ((node.GridPosition.X < node.Parent.GridPosition.X) && (node.GridPosition.Y == node.Parent.GridPosition.Y))
@@ -147,8 +147,21 @@ public class AStarDebugger : MonoBehaviour
                 arrow.transform.eulerAngles = new Vector3(0, 0, 315);
             }
         }
+    }
 
+    private void CreateDebugTile(Vector3 worldPos, Color32 color, Node node = null)
+    {
+        GameObject debugTile = Instantiate(debugTilePrefab, worldPos, Quaternion.identity);
 
+        if (node != null)
+        {
+            DebugTile tmp = debugTile.GetComponent<DebugTile>();
 
+            tmp.G.text += node.G;
+            tmp.H.text += node.H;
+            tmp.F.text += node.F;
+        }
+
+        debugTile.GetComponent<SpriteRenderer>().color = color;
     }
 }

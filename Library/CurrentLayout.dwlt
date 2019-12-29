@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 424}
   m_MaxSize: {x: 22006, y: 10024}
   vertical: 0
-  controlID: 2537
+  controlID: 8510
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 424}
   m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 2609
+  controlID: 8511
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -384,9 +384,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 399.78333, y: 960.0108, z: -2.3125}
+    m_Target: {x: -0.61709464, y: -0.036953963, z: -0.00009346567}
     speed: 2
-    m_Value: {x: 399.78333, y: 960.0108, z: -2.3125}
+    m_Value: {x: -0.61709464, y: -0.036953963, z: -0.00009346567}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -418,9 +418,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 512.8895
+    m_Target: 2.9689503
     speed: 2
-    m_Value: 512.8895
+    m_Value: 2.9689503
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -542,9 +542,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 94f1ffff
-      m_LastClickedID: -3692
-      m_ExpandedIDs: d6fbffff3a140000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 32d0ffff3af0ffffd6fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -606,20 +606,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Debugging
+    - Assets/Scripts/AStar
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Debugging
+  - Assets/Scripts/AStar
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Documents\Phat trien game\Project cuoi ky\Tower_Defense
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 46}
-    m_SelectedIDs: 22390000
-    m_LastClickedID: 14626
-    m_ExpandedIDs: 000000009a0900006c0c0000880d0000b80d0000360f0000500f0000fe0f00006610000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: ac0a0000
+    m_LastClickedID: 2732
+    m_ExpandedIDs: 00000000a2090000780c0000960d0000c60d0000480f0000620f0000101000007a10000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -647,7 +647,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009a0900006c0c0000880d0000b80d0000360f0000500f0000fe0f00006610000000ca9a3b
+    m_ExpandedIDs: 00000000a2090000780c0000960d0000c60d0000480f0000620f0000101000007a10000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
