@@ -25,6 +25,13 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private Text currencyTxt;
 
+    public ObjectPool Pool { get; set; }
+
+    private void Awake()
+    {
+        Pool = GetComponent<ObjectPool>();
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -61,5 +68,82 @@ public class GameManager : Singleton<GameManager>
         {
             Hover.Instance.Deactivate();
         }
+    }
+
+    public void StartWave()
+    {
+        //wave++;
+
+        //waveTxt.text = string.Format("Wave: <color=lime>{0}</color>", wave);
+
+        StartCoroutine(SpawnWave());
+
+        //waveBtn.SetActive(false);
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        LevelManager.Instance.GeneratePath();
+
+        int monsterIndex = Random.Range(0, 4);
+
+        string type = string.Empty;
+
+        switch (monsterIndex)
+        {
+            case 0:
+                type = "BlueMonster";
+                break;
+            case 1:
+                type = "RedMonster";
+                break;
+            case 2:
+                type = "GreenMonster";
+                break;
+            case 3:
+                type = "PurpleMonster";
+                break;
+        }
+
+        Monster monster = Pool.GetObject(type).GetComponent<Monster>();
+        monster.Spawn();
+
+        //LevelManager.Instance.GeneratePath();
+
+        //for (int i = 0; i < wave; i++)
+        //{
+        //    int monsterIndex = Random.Range(0, 4);
+        //    string type = string.Empty;
+        //    switch (monsterIndex)
+        //    {
+        //        case 0:
+        //            type = "BlueMonster";
+        //            break;
+        //        case 1:
+        //            type = "RedMonster";
+        //            break;
+        //        case 2:
+        //            type = "GreenMonster";
+        //            break;
+        //        case 3:
+        //            type = "PurpleMonster";
+        //            break;
+        //    }
+
+        //    Monster monster = Pool.GetObject(type).GetComponent<Monster>();
+
+        //    monster.Spawn(health);
+
+        //    if (wave % 3 == 0)
+        //    {
+        //        health += 5;
+        //    }
+
+        //    activeMonsters.Add(monster);
+
+        //    yield return new WaitForSeconds(2.5f);
+        //}
+
+        yield return new WaitForSeconds(2.5f);
     }
 }
