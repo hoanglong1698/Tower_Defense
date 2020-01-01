@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private Animator myAnimator;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Use this for initialization
+	void Start()
+	{
+		myAnimator = GetComponent<Animator>();
+	}
+
+	public void Open()
+	{
+		myAnimator.SetTrigger("Open");
+	}
 }

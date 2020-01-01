@@ -15,6 +15,7 @@ public class ObjectPool : MonoBehaviour
 			if (go.name == type && !go.activeInHierarchy)
 			{
 				go.SetActive(true);
+
 				return go;
 			}
 		}
@@ -25,8 +26,11 @@ public class ObjectPool : MonoBehaviour
 			if (objectPrefabs[i].name == type)
 			{
 				GameObject newObject = Instantiate(objectPrefabs[i]);
+
 				pooledObjects.Add(newObject);
+
 				newObject.name = type;
+
 				return newObject;
 			}
 		}

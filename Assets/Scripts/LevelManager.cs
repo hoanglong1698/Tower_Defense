@@ -14,6 +14,8 @@ public class LevelManager : Singleton<LevelManager>
 
     private Point blueSpawn, redSpawn;
 
+    public Point BlueSpawn { get => blueSpawn; }
+
     [SerializeField] private GameObject bluePortalPrefab;
 
     [SerializeField] private GameObject redPortalPrefab;
@@ -117,7 +119,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         blueSpawn = new Point(0, 0);
 
-        GameObject tmp = Instantiate(bluePortalPrefab, Tiles[blueSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        GameObject tmp = Instantiate(bluePortalPrefab, Tiles[BlueSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
         BluePortal = tmp.GetComponent<Portal>();
         BluePortal.name = "BluePortal";
 
@@ -133,6 +135,6 @@ public class LevelManager : Singleton<LevelManager>
 
     public void GeneratePath()
     {
-        path = AStar.GetPath(blueSpawn, redSpawn);
+        path = AStar.GetPath(BlueSpawn, redSpawn);
     }
 }

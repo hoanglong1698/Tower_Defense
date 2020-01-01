@@ -34,8 +34,6 @@ public class Monster : MonoBehaviour
 
 	public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
 	{
-		IsActive = false;
-
 		float progress = 0;
 
 		while (progress <= 1)
@@ -53,7 +51,7 @@ public class Monster : MonoBehaviour
 
 		if (remove)
 		{
-			//Release();
+			Release();
 		}
 	}
 
@@ -118,10 +116,36 @@ public class Monster : MonoBehaviour
 
 			else if (currentPos.X < newPos.X)
 			{
+				//Moving to the right
 				myAnimator.SetInteger("Horizontal", 1);
 				myAnimator.SetInteger("Vertical", 0);
-				//Moving to the right
 			}
 		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "RedPortal")
+		{
+			StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+			other.GetComponent<Portal>().Open();
+			//GameManager.Instance.Lives--;
+		}
+
+		if (other.tag == "Tile")
+		{
+			//spriteRenderer.sortingOrder = other.GetComponent<TileScript>().GridPosition.Y;
+		}
+	}
+
+	public void Release()
+	{
+		IsActive = false;
+
+		GridPosition = LevelManager.Instance.BlueSpawn;
+
+		GameManager.Instance.Pool.ReleaseObject(gameObject);
+
+		GameManager.Instance.RemoveMonster(this);
 	}
 }
