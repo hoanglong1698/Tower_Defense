@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 398}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1366
     height: 685
-  m_MinSize: {x: 950, y: 398}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 913, y: 348}
-  m_MaxSize: {x: 22008, y: 10024}
+  m_MinSize: {x: 917, y: 448}
+  m_MaxSize: {x: 22012, y: 10024}
   vertical: 0
-  controlID: 8827
+  controlID: 5945
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,10 +138,10 @@ MonoBehaviour:
     y: 0
     width: 553
     height: 635
-  m_MinSize: {x: 202, y: 348}
+  m_MinSize: {x: 202, y: 448}
   m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
-  controlID: 8807
+  controlID: 6103
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,14 +161,14 @@ MonoBehaviour:
     y: 0
     width: 553
     height: 326
-  m_MinSize: {x: 102, y: 124}
+  m_MinSize: {x: 202, y: 224}
   m_MaxSize: {x: 4002, y: 4024}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
   - {fileID: 14}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -214,8 +214,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 635
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -384,9 +384,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 772.4672, y: 1022.3674, z: -1.0513985}
+    m_Target: {x: 854.1861, y: 1012.79724, z: -2.210591}
     speed: 2
-    m_Value: {x: 772.4672, y: 1022.3674, z: -1.0513985}
+    m_Value: {x: 854.1861, y: 1012.79724, z: -2.210591}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -418,9 +418,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 648.11664
+    m_Target: 481.9786
     speed: 2
-    m_Value: 648.11664
+    m_Value: 481.9786
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -468,6 +468,7 @@ MonoBehaviour:
     - {fileID: 1107920578980784880, guid: a6c7f205aa8bf224687e5a86d5481a68, type: 2}
     - {fileID: 1107805285505542794, guid: 73785fed6d344d346a7b2611c992800c, type: 2}
     - {fileID: 1107704513901733078, guid: 2210687deb178f74fae9326507e92778, type: 2}
+    - {fileID: 1107562508423305162, guid: 2dbcd72b34685f841a41c52f3ac5b8db, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.26842105
       e01: 0
@@ -501,14 +502,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.9387799
+    - e00: 0.28526315
       e01: 0
       e02: 0
-      e03: 44.131866
+      e03: 0.7368469
       e10: 0
-      e11: 0.9387799
+      e11: 0.28526315
       e12: 0
-      e13: 84.212425
+      e13: 106.4
       e20: 0
       e21: 0
       e22: 1
@@ -565,14 +566,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.2173728
+    - e00: 0.26992032
       e01: 0
       e02: 0
-      e03: -636.2589
+      e03: 2.0438232
       e10: 0
-      e11: 1.2173728
+      e11: 0.26992032
       e12: 0
-      e13: -156.7351
+      e13: 91.12251
       e20: 0
       e21: 0
       e22: 1
@@ -597,11 +598,27 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 0.24414414
+      e01: 0
+      e02: 0
+      e03: 9.140549
+      e10: 0
+      e11: 0.24414414
+      e12: 0
+      e13: 101.1509
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 73785fed6d344d346a7b2611c992800c,
+  m_AnimatorController: {fileID: 9100000, guid: 2dbcd72b34685f841a41c52f3ac5b8db,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107805285505542794, guid: 73785fed6d344d346a7b2611c992800c,
+  - m_Target: {fileID: 1107562508423305162, guid: 2dbcd72b34685f841a41c52f3ac5b8db,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -644,9 +661,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 763d0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d6fbffff58140000
+      m_ExpandedIDs: d6fbffffb2140000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -708,20 +725,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Controllers/Monsters
+    - Assets/Prefabs/Portals
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Controllers/Monsters
+  - Assets/Prefabs/Portals
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Documents\Phat trien game\Project cuoi ky\Tower_Defense
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ce3d0000
-    m_LastClickedID: 15822
-    m_ExpandedIDs: 00000000a60900009a0d0000ca0d0000d00d0000660f00004811000000ca9a3b
+    m_SelectedIDs: 0e0f0000
+    m_LastClickedID: 3854
+    m_ExpandedIDs: 00000000b4090000be0d0000f20d0000f80d0000940f00008611000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -749,7 +766,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a60900009a0d0000ca0d0000d00d0000660f00004811000000ca9a3b
+    m_ExpandedIDs: 00000000b4090000be0d0000f20d0000f80d0000940f00008611000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -776,7 +793,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: ce3600004c3400009e0f00000000000028120000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
