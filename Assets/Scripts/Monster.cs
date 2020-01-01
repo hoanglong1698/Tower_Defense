@@ -14,6 +14,8 @@ public class Monster : MonoBehaviour
 
 	public bool IsActive { get; set; }
 
+	private SpriteRenderer spriteRenderer;
+
 	private Animator myAnimator;
 
 	private void Update()
@@ -128,13 +130,15 @@ public class Monster : MonoBehaviour
 		if (other.tag == "RedPortal")
 		{
 			StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+
 			other.GetComponent<Portal>().Open();
-			//GameManager.Instance.Lives--;
+
+			GameManager.Instance.Lives--;
 		}
 
 		if (other.tag == "Tile")
 		{
-			//spriteRenderer.sortingOrder = other.GetComponent<TileScript>().GridPosition.Y;
+			spriteRenderer.sortingOrder = other.GetComponent<TileScript>().GridPosition.Y;
 		}
 	}
 

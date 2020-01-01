@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
@@ -44,9 +45,37 @@ public class GameManager : Singleton<GameManager>
 
     private bool gameOver = false;
 
+    [SerializeField] private GameObject gameOverMenu;
+
+    private int lives;
+
+    [SerializeField] private Text livesTxt;
+    public int Lives
+    {
+        get
+        {
+            return lives;
+        }
+
+        set
+        {
+            this.lives = value;
+
+            livesTxt.text = lives.ToString();
+
+            if (lives <= 0)
+            {
+                this.lives = 0;
+
+                GameOver();
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        Lives = 5;
         Currency = 100;
     }
 
@@ -142,5 +171,27 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
         }
+    }
+
+    public void GameOver()
+    {
+        if (!gameOver)
+        {
+            gameOver = true;
+
+            gameOverMenu.SetActive(true);
+        }
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
