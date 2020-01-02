@@ -26,6 +26,8 @@ public class TileScript : MonoBehaviour
         }
     }
 
+    private Tower myTower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +72,20 @@ public class TileScript : MonoBehaviour
             {
                 PlaceTower();
             }
-        }  
+        }
+
+        else if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn == null && Input.GetMouseButton(0))
+        {
+            if (myTower != null)
+            {
+                GameManager.Instance.SelectTower(myTower);
+            }
+
+            else
+            {
+                GameManager.Instance.DeselectTower();
+            }
+        }
     }
 
     private void OnMouseExit()
@@ -89,12 +104,17 @@ public class TileScript : MonoBehaviour
 
         tower.transform.SetParent(transform);
 
+        this.myTower = tower.transform.GetChild(0).GetComponent<Tower>();
+
         IsEmpty = false;
+
         Walkable = false;
 
         ColorTile(Color.white);
 
         GameManager.Instance.BuyTower();
+
+        myTower.Select();
     }
 
     private void ColorTile(Color newColor)

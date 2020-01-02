@@ -72,6 +72,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private Tower selectedTower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -193,5 +195,33 @@ public class GameManager : Singleton<GameManager>
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SelectTower(Tower tower)
+    {
+        if (selectedTower != null)
+        {
+            selectedTower.Select();
+        }
+
+        selectedTower = tower;
+
+        selectedTower.Select();
+
+        //sellText.text = "+ " + (selectedTower.Price / 2);
+
+        //upgradePanel.SetActive(true);
+    }
+
+    public void DeselectTower()
+    {
+        if (selectedTower != null)
+        {
+            selectedTower.Select();
+        }
+
+        //upgradePanel.SetActive(false);
+
+        selectedTower = null;
     }
 }
