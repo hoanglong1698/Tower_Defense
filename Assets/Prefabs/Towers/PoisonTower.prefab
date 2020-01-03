@@ -109,6 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136ef3cbcf23d264bb2597d2ee70f7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileType: PoisonProjectile
+  projectileSpeed: 3
+  attackCooldown: 3
+  damage: 5
 --- !u!1 &7939349684469287548
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +204,7 @@ Animator:
   m_GameObject: {fileID: 7939349684469287548}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d9ca5b8c423e756429b45f6cb6d539b5, type: 2}
+  m_Controller: {fileID: 9100000, guid: ad1a3c2496478ae4ab522a67994f3312, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

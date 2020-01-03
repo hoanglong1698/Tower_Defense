@@ -109,6 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136ef3cbcf23d264bb2597d2ee70f7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileType: FireProjectile
+  projectileSpeed: 3
+  attackCooldown: 3
+  damage: 5
 --- !u!1 &7160969257757470983
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +204,7 @@ Animator:
   m_GameObject: {fileID: 7160969257757470983}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fb49412f77160d9489451def4be79e2e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 18486155c153f814a9500791de2f3d09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
