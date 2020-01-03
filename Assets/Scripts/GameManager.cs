@@ -45,6 +45,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool gameOver = false;
 
+    private int health = 15;
+
     [SerializeField] private GameObject gameOverMenu;
 
     private int lives;
@@ -151,7 +153,12 @@ public class GameManager : Singleton<GameManager>
             }
 
             Monster monster = Pool.GetObject(type).GetComponent<Monster>();
-            monster.Spawn();
+            monster.Spawn(health);
+
+            if (wave % 3 == 0)
+            {
+                health += 5;
+            }
 
             activeMonsters.Add(monster);
 

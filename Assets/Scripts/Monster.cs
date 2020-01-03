@@ -18,14 +18,33 @@ public class Monster : MonoBehaviour
 
 	private Animator myAnimator;
 
+	[SerializeField] private Stat health;
+
+	public bool Alive { get => health.CurrentValue > 0; }
+
+	private void Awake()
+	{
+		myAnimator = GetComponent<Animator>();
+
+		health.Initialize();
+
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
 	private void Update()
 	{
 		Move();
 	}
 
-	public void Spawn()
+	public void Spawn(int health)
     {
         transform.position = LevelManager.Instance.BluePortal.transform.position;
+
+		this.health.Bar.Reset();
+
+		this.health.MaxValue = health;
+
+		this.health.CurrentValue = this.health.MaxValue;
 
 		myAnimator = GetComponent<Animator>();
 
@@ -151,5 +170,24 @@ public class Monster : MonoBehaviour
 		GameManager.Instance.Pool.ReleaseObject(gameObject);
 
 		GameManager.Instance.RemoveMonster(this);
+	}
+
+	public void TakeDamage(int damage)
+	{
+		if (IsActive)
+		{
+			health.CurrentValue -= damage;
+
+			if (health.CurrentValue <= 0)
+			{
+				GameManager.Instance.Currency += 2;
+
+				myAnimator.SetTrigger("Die");
+
+				IsActive = false;
+
+				GetComponent<SpriteRenderer>().sortingOrder--;
+			}
+		}
 	}
 }
